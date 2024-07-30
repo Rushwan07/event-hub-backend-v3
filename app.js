@@ -15,7 +15,7 @@ const userDetailRouter = require("./src/routes/userDetailRouter");
 const app = express();
 app.use(express.json({ limit: "50mb" }));
 
-const allowedOrigins = ["http://localhost:5173"];
+const allowedOrigins = ["http://localhost:5173","https://main--extraordinary-fox-28d76d.netlify.app"];
 
 app.use(
   cors({
