@@ -155,7 +155,7 @@ exports.getAllClients = catchAsync(async (req, res, next) => {
 exports.createClient = catchAsync(async (req, res, next) => {
   try {
     // const imageFiles = req.files.bestWork ? req.files?.bestWork?.map((file) => file.filename) : [];
-    console.log(req.body);
+
     const client = await Client.create({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -245,8 +245,6 @@ exports.getClientByID = catchAsync(async (req, res, next) => {
 
 exports.updateClient = catchAsync(async (req, res, next) => {
   try {
-    console.log(req.body);
-    console.log("*************");
     // if (req.files.bestWork) req.body.bestWork = req.files?.bestWork?.map((file) => file.filename);
 
     const client = await Client.findByIdAndUpdate(req.params.id, req.body, {

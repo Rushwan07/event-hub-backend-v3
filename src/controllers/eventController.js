@@ -203,11 +203,6 @@ exports.createEvent = catchAsync(async (req, res, next) => {
   });
 
   await newEvent.save();
-  console.log(
-    "*************************************new event*********************************************",
-  );
-  console.log(newEvent);
-  console.log("**********************************************************************************");
 
   const services = [venue, catering, photograph, decoration];
   for (const service of services) {
@@ -303,7 +298,7 @@ exports.getEventsByClientId = catchAsync(async (req, res, next) => {
 exports.confirmEvent = catchAsync(async (req, res, next) => {
   const bookingId = req.params.bookingId;
   const booking = await Booking.findById(bookingId);
-  console.log(booking);
+
   const clientId = booking.clientId;
   if (!booking) {
     return next(new AppError("No Bookings found", 404));

@@ -114,8 +114,6 @@ exports.deleteItem = catchAsync(async (req, res, next) => {
 exports.editItem = catchAsync(async (req, res, next) => {
   const id = req.params.id;
 
-  console.log(req.body);
-
   // const imageFiles = req.files.images ? req.files.images.map((file) => file.filename) : [];
   // const decorationFiles = req.files.decorationImages
   //   ? req.files.decorationImages.map((file) => file.filename)
@@ -161,7 +159,6 @@ exports.getItem = catchAsync(async (req, res, next) => {
   for (let d = startDate; d <= endDate; d.setDate(d.getDate() + 1)) {
     dateRange.push(new Date(d)); // Create a new date instance to avoid mutating `d`
   }
-  console.log(dateRange);
 
   const availableClients = await Client.find({
     availability: {
@@ -179,7 +176,6 @@ exports.getItem = catchAsync(async (req, res, next) => {
   }).select("_id");
 
   const availableClientIds = availableClients.map((client) => client._id);
-  console.log(availableClientIds);
 
   const items = await Item.find({
     clientId: { $in: availableClientIds },
