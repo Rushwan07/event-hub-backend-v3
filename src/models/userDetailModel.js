@@ -10,7 +10,7 @@ const userDetailSchema = new mongoose.Schema(
     location: { type: String },
     contact: { type: String },
     qId: { type: String },
-    profile_photo: [{ type: String }],
+    profile_photo: [{ type: String,default:"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" }],
     // description: { type: String, required: true },
   },
   {

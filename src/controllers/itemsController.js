@@ -124,12 +124,9 @@ exports.editItem = catchAsync(async (req, res, next) => {
   // if (decorationFiles.length > 0) req.body.decorationImages = decorationFiles;
   // if (imageFiles.length > 0) req.body.images = imageFiles;
 
-  const updatedItem = await Item.findOneAndUpdate({ _id: id }, req.body, { new: true });
+  await Item.findByIdAndUpdate(id, req.body);
 
-  if (!updatedItem) {
-    return next(new AppError("Not found", 404));
-  }
-  res.status(201).json({ message: "Edited successful", updatedItem });
+  res.status(201).json({ message: "Edited successful" });
 });
 
 exports.getItemsByType = catchAsync(async (req, res, next) => {

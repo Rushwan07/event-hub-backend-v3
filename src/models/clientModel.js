@@ -29,7 +29,11 @@ const ClientSchema = new mongoose.Schema(
     contact: { type: String, required: true },
     qId: { type: String, required: true },
     crNo: { type: String, required: true },
-    bestWork: { type: String },
+    bestWork: {
+      type: String,
+      default:
+        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
+    },
     description: { type: String, required: true },
     availability: [{ type: Date, set: normalizeDate }],
     catererDetails: CatererSchema,
