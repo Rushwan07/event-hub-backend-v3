@@ -7,6 +7,8 @@ const bookingRouter = require("./src/routes/bookingRouter");
 const userRouter = require("./src/routes/userRoute");
 const typesRouter = require("./src/routes/typesRouter");
 const itemsRouter = require("./src/routes/itemsRouter");
+const ticketRouter = require("./src/routes/ticketRouter");
+
 const clientRouter = require("./src/routes/clientRouter");
 const calendarRouter = require("./src/routes/calendarRouter");
 const eventRouter = require("./src/routes/eventRouter");
@@ -15,7 +17,10 @@ const userDetailRouter = require("./src/routes/userDetailRouter");
 const app = express();
 app.use(express.json({ limit: "50mb" }));
 
-const allowedOrigins = ["http://localhost:5173","https://main--extraordinary-fox-28d76d.netlify.app"];
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://main--extraordinary-fox-28d76d.netlify.app",
+];
 
 app.use(
   cors({
@@ -53,6 +58,7 @@ app.use("/api/v1/", bookingRouter);
 app.use("/api/v1/", userRouter);
 app.use("/api/v1/types", typesRouter);
 app.use("/api/v1/items", itemsRouter);
+app.use("/api/v1/tickets", ticketRouter);
 app.use("/api/v1/events", eventRouter);
 app.use("/api/v1/", clientRouter);
 app.use("/api/v1/", calendarRouter);

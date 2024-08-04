@@ -6,7 +6,7 @@ const AppError = require("../utils/appError");
 const mongoose = require("mongoose");
 const { GridFSBucket } = require("mongodb");
 const Item = require("../models/itemsModel");
-
+const TicketType = require("../models/ticketTypesModel");
 const getImages = async (image) => {
   try {
     const { db } = mongoose.connection;
@@ -378,7 +378,14 @@ exports.rejectEvent = catchAsync(async (req, res, next) => {
 });
 
 exports.publishEvent = catchAsync(async (req, res, next) => {
+  const categorys = req.body.categorys;
   const eventId = req.params.eventId;
+
+  for (cat of categorys) {
+    const insertedCategory = new TicketType({ eventId, category: cat.category, price: cat.price });
+    await insertedCategory.save();
+  }
+
   const event = await Event.findByIdAndUpdate(eventId, { isPublished: true, status: "Confirmed" });
   const userId = event.userId;
 
@@ -393,6 +400,7 @@ exports.publishEvent = catchAsync(async (req, res, next) => {
 
 exports.cancelEvent = catchAsync(async (req, res, next) => {
   const eventId = req.params.eventId;
+  await TicketType.deleteMany({ eventId });
   const event = await Event.findByIdAndUpdate(eventId, { isPublished: false, status: "Canceled" });
   const userId = event.userId;
 

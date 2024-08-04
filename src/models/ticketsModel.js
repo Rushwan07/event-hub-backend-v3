@@ -15,16 +15,20 @@ const ticketSchema = new Schema(
       required: true,
     },
     type: {
-      type: String,
+      type: Schema.Types.ObjectId,
+      ref: "TicketType",
       required: true,
     },
-    price: {
+    totalCost: {
+      type: Number,
+      required: true,
+    },
+    quantity: {
       type: Number,
       required: true,
     },
     purchaseDate: {
       type: Date,
-      required: true,
     },
   },
   {
